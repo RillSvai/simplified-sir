@@ -8,14 +8,14 @@ R' = nu*I
 
 import numpy as np;
 import SIR;
-import ForwardEuler;
+import RungeKutt4;
 from matplotlib import pyplot as plt;
 
 
 beta = lambda t: 0.0005 if t <= 10 else 0.0001
 sir = SIR.SIR(0.1, beta, 1500, 1, 0);
 
-solver = ForwardEuler.ForwardEuler(sir);
+solver = RungeKutt4.RungeKutt4(sir);
 solver.set_initial_conditions(sir.initial_conditions)
 
 t = np.linspace(0, 60, 1001);
