@@ -34,7 +34,7 @@ class ODESolver:
         for i in range(n - 1):
             self.i = i;
             self.u[i+1] = self.advance();
-        
-        return self.u[:i+2], self.time_points[:i+2];
+            
+        return self.u, self.time_points
 
         
