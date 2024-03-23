@@ -23,10 +23,10 @@ class ODESolver:
         
         self.U0 = U0;
 
-    def solve(self, time_points):
+    def solve(self, time_points, is_adaptive):
         self.time_points = np.asarray(time_points);
         n = self.time_points.size;
-
+        self.is_adaptive = is_adaptive
         self.u = np.zeros((n, self.number_of_equations));
         self.u[0, :] = self.U0;
 

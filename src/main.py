@@ -16,11 +16,6 @@ import RungeKutt4;
 import ForwardEuler
 from matplotlib import pyplot as plt;
 
-def getPoints(is_first):
-    if (is_first):
-        return np.linspace(start_fe, end_fe, number), np.linspace(start_rk, end_rk, number)
-    return [], []
-
 def f(u, t):
     return u + 2*t - 3
 
@@ -28,15 +23,15 @@ def u_analytical(t):
     return 2*np.exp(t) - 2*t + 1
 
 U0 = 3
-time_points_fe, time_points_rk = getPoints(True);
+time_points_fe, time_points_rk =np.linspace(start_fe, end_fe, number), np.linspace(start_rk, end_rk, number)
 
 fe_solver = ForwardEuler.ForwardEuler(f)
 fe_solver.set_initial_conditions(U0)
-u_fe, t_fe = fe_solver.solve(time_points_fe)
+u_fe, t_fe = fe_solver.solve(time_points_fe, False)
 
 rk_solver = RungeKutt4.RungeKutt4(f)
 rk_solver.set_initial_conditions(U0)
-u_rk, t_rk = rk_solver.solve(time_points_rk)
+u_rk, t_rk = rk_solver.solve(time_points_rk, True)
 
 u_analytical_vals = u_analytical(t_rk)
 
